@@ -1,0 +1,31 @@
+# --- Node & Package Managers ---
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# --- Build Output ---
+dist/
+*.local
+
+# --- Logs & Debug Files ---
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db
+
+# --- Editor/IDE Config ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# --- Environment Variables ---
+.env
+.env.*.local
