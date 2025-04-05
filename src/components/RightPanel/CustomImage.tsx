@@ -3,14 +3,9 @@ import { BoxProps, Image } from "@chakra-ui/react";
 
 interface CustomImageProps extends BoxProps {
   src: string;
-  onMouseEnter: () => void;
 }
 
-const CustomImage: React.FC<CustomImageProps> = ({
-  src,
-  onMouseEnter,
-  ...boxProps
-}) => {
+const CustomImage: React.FC<CustomImageProps> = ({ src, ...boxProps }) => {
   return (
     <Image
       src={src}
@@ -19,7 +14,6 @@ const CustomImage: React.FC<CustomImageProps> = ({
       h="full"
       objectFit="cover"
       opacity={0.4}
-      onMouseEnter={onMouseEnter}
       {...boxProps}
     />
   );
