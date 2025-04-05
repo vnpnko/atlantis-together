@@ -4,38 +4,12 @@ import * as THREE from "three";
 import Globe, { GlobeMethods } from "react-globe.gl";
 import locationsData from "../assets/data/locations.json";
 import arcsData from "../assets/data/arcs.json";
+import { GlobeLocation } from "../models/globe/GlobeLocation";
+import { GlobeArc } from "../models/globe/GlobeArc";
 
-interface GlobeLocation {
-  lat: number;
-  lng: number;
-  label: string;
-  url: string;
-  source: string;
-}
+const locations: GlobeLocation[] = locationsData.map((location: GlobeLocation) => location);
 
-interface GlobeArc {
-  startLat: number;
-  startLng: number;
-  endLat: number;
-  endLng: number;
-  travelMode: string;
-}
-
-const arcs: GlobeArc[] = arcsData.map((arc) => ({
-  startLat: arc.startLat,
-  startLng: arc.startLng,
-  endLat: arc.endLat,
-  endLng: arc.endLng,
-  travelMode: arc.travelMode,
-}));
-
-const locations: GlobeLocation[] = locationsData.map((location) => ({
-  lat: location.lat,
-  lng: location.lng,
-  label: location.label,
-  url: location.url,
-  source: location.source,
-}));
+const arcs: GlobeArc[] = arcsData.map((arc: GlobeArc) => arc);
 
 interface MyGlobeProps {
   width?: number;

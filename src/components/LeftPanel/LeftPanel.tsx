@@ -5,21 +5,9 @@ import MyGlobe from "../MyGlobe.tsx";
 import CustomButton from "../shared/CustomButton.tsx";
 import locationsData from "../../assets/data/locations.json";
 
-interface GlobeLocation {
-  lat: number;
-  lng: number;
-  label: string;
-  url: string;
-  source: string;
-}
+import { GlobeLocation } from "../../models/globe/GlobeLocation.ts";
 
-const locations: GlobeLocation[] = locationsData.map((location) => ({
-  lat: location.lat,
-  lng: location.lng,
-  label: location.label,
-  url: location.url,
-  source: location.source,
-}));
+const locations: GlobeLocation[] = locationsData.map((location: GlobeLocation) => location);
 
 const LeftPanel: React.FC = () => {
   const navigate = useNavigate();
@@ -67,7 +55,6 @@ const LeftPanel: React.FC = () => {
           <MyGlobe width={365} height={250} bgColor={true} />
         </Box>
       )}
-      {/* Scene Buttons List */}
       <VStack spacing={3} pr={2} flex="1" overflowY="auto">
         {locations.map(({ label }) => (
           <CustomButton
