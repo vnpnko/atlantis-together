@@ -14,18 +14,7 @@ const VideoComponent: React.FC = () => {
   const scene = searchParams.get("scene") || "default";
   const videoUrl = videoUrls[scene] || videoUrls.default;
 
-  return (
-    <Box
-      as="iframe"
-      w="full"
-      h="full"
-      border="2px"
-      borderRadius="lg"
-      borderColor="yellow.500"
-      src={videoUrl}
-      allowFullScreen
-    />
-  );
+  return <Box as="iframe" h="full" w="full" src={videoUrl} allowFullScreen />;
 };
 
 export default VideoComponent;

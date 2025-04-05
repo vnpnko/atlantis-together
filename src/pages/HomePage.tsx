@@ -4,29 +4,10 @@ import RightPanel from "../components/RightPanel/RightPanel.tsx";
 import MyGlobe from "../components/MyGlobe.tsx";
 import Stage from "../components/Stage.tsx";
 import { useSearchParams } from "react-router-dom";
-import IframeOverlay from "../components/IframeOverlay.tsx";
-import { useState } from "react";
 
 const HomePage = () => {
   const [searchParams] = useSearchParams();
   const currentScene = searchParams.get("scene");
-
-  const [showIframe, setShowIframe] = useState<boolean>(false);
-  const [iframeContent, setIframeContent] = useState<string>("");
-
-  const handleBoxClick = (contentUrl: string) => {
-    setIframeContent(contentUrl);
-    setShowIframe(true);
-  };
-
-  const handleCloseOverlay = () => {
-    setShowIframe(false);
-    setIframeContent("");
-  };
-
-  const findSource = () => {
-    window.open(iframeContent, "_blank");
-  };
 
   return (
     <Flex position="relative" p={5} h="100vh" w="100vw" align="stretch">
@@ -45,23 +26,9 @@ const HomePage = () => {
       <Box zIndex={1}>
         <LeftPanel />
       </Box>
-      {/* Iframe Overlay */}
-      {showIframe && (
-        <Box h="540px" w="full" zIndex={2}>
-          <IframeOverlay
-            contentUrl={iframeContent}
-            onClose={handleCloseOverlay}
-            findSource={findSource}
-          />
-        </Box>
-      )}
       <Spacer />
       <Box zIndex={1}>
-        <RightPanel
-          onBoxClick={handleBoxClick}
-          onCloseOverlay={handleCloseOverlay}
-          findSource={findSource}
-        />
+        <RightPanel />
       </Box>
     </Flex>
   );

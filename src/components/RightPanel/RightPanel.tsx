@@ -1,51 +1,81 @@
-import React from "react";
-import { VStack, Box } from "@chakra-ui/react";
+import React, { useRef, useState } from "react";
+import { Flex } from "@chakra-ui/react";
 import VideoComponent from "./VideoComponent.tsx";
 import RightBox from "./RightBox.tsx";
 import iframeKialo from "../../assets/images/iframe_kialo.png";
 import iframeBetterWorldTogether from "../../assets/images/iframe_betterworldtogether.png";
+import CustomIframe from "./CustomIframe.tsx";
+import CustomImage from "./CustomImage.tsx";
+import { useOutsideClick } from "@chakra-ui/icons";
 
-interface RightPanelProps {
-  onBoxClick: (contentUrl: string) => void;
-  onCloseOverlay: () => void;
-  findSource: () => void;
-}
+const RightPanel: React.FC = () => {
+  const [iframeContent, setIframeContent] = useState<string>("");
+  const iframeRef = useRef<HTMLDivElement>(null);
 
-const RightPanel: React.FC<RightPanelProps> = ({ onBoxClick }) => {
+  useOutsideClick({
+    ref: iframeRef,
+    handler: () => {
+      if (iframeContent) {
+        setIframeContent("");
+      }
+    },
+  });
+
   return (
-    <VStack
-      width="400px"
+    <Flex
+      direction={"column"}
+      justifyContent={"space-between"}
       h="660px"
-      position="relative"
-      justify="space-between"
+      width="400px"
       zIndex={1}
     >
-      <Box h="200px" w="full">
+      <RightBox h="220px">
         <VideoComponent />
-      </Box>
+      </RightBox>
 
-      <Box h="200px" w="full">
-        <RightBox
-          imageSrc={iframeBetterWorldTogether}
-          onOpen={() =>
-            onBoxClick(
-              "https://betterworldtogether.wixsite.com/mysite/copy-of-mauritania",
-            )
-          }
-        />
-      </Box>
+      {iframeContent ? (
+        <RightBox h="420px" ref={iframeRef}>
+          {/*<CustomButton*/}
+          {/*  position={"absolute"}*/}
+          {/*  bottom={2}*/}
+          {/*  left={"50%"}*/}
+          {/*  transform={"translateX(-50%)"}*/}
+          {/*  w={"100px"}*/}
+          {/*  onClick={() => setIframeContent("")}*/}
+          {/*  zIndex={3}*/}
+          {/*  label="Close"*/}
+          {/*/>*/}
+          <CustomIframe
+            src={iframeContent}
+            // onMouseLeave={() => setIframeContent("")}
+          />
+        </RightBox>
+      ) : (
+        <>
+          <RightBox h="200px">
+            <CustomImage
+              src={iframeBetterWorldTogether}
+              onMouseEnter={() =>
+                setIframeContent(
+                  "https://betterworldtogether.wixsite.com/mysite/copy-of-mauritania",
+                )
+              }
+            />
+          </RightBox>
 
-      <Box h="200px" w="full">
-        <RightBox
-          imageSrc={iframeKialo}
-          onOpen={() =>
-            onBoxClick(
-              "https://www.kialo.com/atlantis-was-an-existing-place-and-can-be-found-41721",
-            )
-          }
-        />
-      </Box>
-    </VStack>
+          <RightBox h="200px">
+            <CustomImage
+              src={iframeKialo}
+              onMouseEnter={() =>
+                setIframeContent(
+                  "https://www.kialo.com/atlantis-was-an-existing-place-and-can-be-found-41721",
+                )
+              }
+            />
+          </RightBox>
+        </>
+      )}
+    </Flex>
   );
 };
 
