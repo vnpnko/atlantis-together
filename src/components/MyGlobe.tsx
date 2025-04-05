@@ -61,6 +61,8 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
 
     const CLOUDS_ALT = 0.004;
     const CLOUDS_ROTATION_SPEED = -0.006;
+    let animationFrameId: number;
+
     new THREE.TextureLoader().load("/clouds.png", (cloudsTexture) => {
       const clouds = new THREE.Mesh(
         new THREE.SphereGeometry(
@@ -75,10 +77,12 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
       );
       globe.scene().add(clouds);
 
-      (function rotateClouds() {
+      function rotateClouds() {
         clouds.rotation.y += (CLOUDS_ROTATION_SPEED * Math.PI) / 180;
-        requestAnimationFrame(rotateClouds);
-      })();
+        animationFrameId = requestAnimationFrame(rotateClouds);
+      }
+
+      rotateClouds();
     });
 
     const updateDimensions = () => {
@@ -93,6 +97,12 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
     };
 
     updateDimensions();
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [width, height]);
 
   return (

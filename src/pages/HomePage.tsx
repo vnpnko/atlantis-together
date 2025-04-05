@@ -7,23 +7,6 @@ import { useSearchParams } from "react-router-dom";
 import IframeOverlay from "../components/IframeOverlay.tsx";
 import { useState } from "react";
 
-// const scenes = [
-//   { id: "Mauritania", label: "Mauritania" },
-//   { id: "Athens", label: "Athens" },
-//   { id: "Budapest", label: "Budapest" },
-//   { id: "scene_4", label: "scene_4" },
-//   { id: "scene_5", label: "scene_5" },
-//   { id: "scene_6", label: "scene_6" },
-//   { id: "scene_7", label: "scene_7" },
-//   { id: "scene_8", label: "scene_8" },
-//   { id: "scene_9", label: "scene_9" },
-//   { id: "scene_10", label: "scene_10" },
-//   { id: "scene_11", label: "scene_11" },
-//   { id: "scene_12", label: "scene_12" },
-//   { id: "scene_13", label: "scene_13" },
-//   { id: "scene_14", label: "scene_14" },
-// ];
-
 const HomePage = () => {
   const [searchParams] = useSearchParams();
   const currentScene = searchParams.get("scene");
