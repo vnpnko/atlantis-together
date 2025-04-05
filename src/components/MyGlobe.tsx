@@ -18,6 +18,7 @@ interface GlobeArc {
   startLng: number;
   endLat: number;
   endLng: number;
+  travelMode: string;
 }
 
 const arcs: GlobeArc[] = arcsData.map((arc) => ({
@@ -25,6 +26,7 @@ const arcs: GlobeArc[] = arcsData.map((arc) => ({
   startLng: arc.startLng,
   endLat: arc.endLat,
   endLng: arc.endLng,
+  travelMode: arc.travelMode,
 }));
 
 const locations: GlobeLocation[] = locationsData.map((location) => ({
@@ -119,8 +121,12 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
         htmlElementsData={locations}
         arcsData={arcs}
         arcColor={() => "#fde047"}
-        arcStroke={1}
-        arcAltitude={0}
+        arcStroke={0.3}
+        arcAltitude={(arc) => arc.travelMode === "plane" ? 0.2 : 0.01}
+        arcDashLength={0.3}
+        arcDashGap={0.05}
+        arcDashInitialGap={() => Math.random()}
+        arcDashAnimateTime={12000}
         animateIn={false}
         htmlElement={(d: object) => {
           const el = document.createElement("div");

@@ -1,14 +1,16 @@
 [
   {
-    "startLat": 21.2339,
-    "startLng": -11.0653,
-    "endLat": 37.5903,
-    "endLng": 23.4341
+    "startLat": 47.2954,
+    "startLng": 19.0207,
+    "endLat": 21.2339,
+    "endLng": -11.0653,
+    "travelMode": "plane"
   },
   {
     "startLat": 47.2954,
     "startLng": 19.0207,
     "endLat": 37.5903,
-    "endLng": 23.4341
+    "endLng": 23.4341,
+    "travelMode": "car"
   }
 ]
