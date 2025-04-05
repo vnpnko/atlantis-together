@@ -122,7 +122,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
         arcsData={arcs}
         arcColor={() => "#fde047"}
         arcStroke={0.3}
-        arcAltitude={(arc) => arc.travelMode === "plane" ? 0.2 : 0.01}
+        arcAltitude={(arc: object) => (arc as GlobeArc).travelMode === "plane" ? 0.2 : 0.01}
         arcDashLength={0.3}
         arcDashGap={0.05}
         arcDashInitialGap={() => Math.random()}
