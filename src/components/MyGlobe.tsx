@@ -7,7 +7,9 @@ import arcsData from "../assets/data/arcs.json";
 import { GlobeLocation } from "../models/globe/GlobeLocation";
 import { GlobeArc } from "../models/globe/GlobeArc";
 
-const locations: GlobeLocation[] = locationsData.map((location: GlobeLocation) => location);
+const locations: GlobeLocation[] = locationsData.map(
+  (location: GlobeLocation) => location,
+);
 
 const arcs: GlobeArc[] = arcsData.map((arc: GlobeArc) => arc);
 
@@ -96,7 +98,9 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
         arcsData={arcs}
         arcColor={() => "#fde047"}
         arcStroke={0.3}
-        arcAltitude={(arc: object) => (arc as GlobeArc).travelMode === "plane" ? 0.2 : 0.01}
+        arcAltitude={(arc: object) =>
+          (arc as GlobeArc).travelMode === "plane" ? 0.2 : 0.01
+        }
         arcDashLength={0.3}
         arcDashGap={0.05}
         arcDashInitialGap={() => Math.random()}
@@ -105,7 +109,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
         htmlElement={(d: object) => {
           const el = document.createElement("div");
           el.innerHTML = `
-          <div style="position: relative; align-content: center; justify-content: center; display: flex; flex-direction: column; align-items: center;">
+          <div style="align-content: center; justify-content: center; display: flex; flex-direction: column; align-items: center;">
             <img src="/geotag.png" alt="Geotag" style="height: 40px;" />
             <p style="
               font-size: 20px;
