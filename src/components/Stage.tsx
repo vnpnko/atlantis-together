@@ -34,7 +34,7 @@ const Stage: React.FC<StageProps> = ({ isMobile = false }) => {
     rendererDom.style.position = isMobile ? "relative" : "fixed";
     rendererDom.style.zIndex = "0";
     rendererDom.style.width = "100%";
-    rendererDom.style.height = isMobile ? "70vh" : "100%";
+    rendererDom.style.height = isMobile ? "50vh" : "100%";
     rendererDom.style.top = "0";
     rendererDom.style.left = "0";
 
