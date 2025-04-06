@@ -12,11 +12,11 @@ const HomePage = () => {
 
   if (isMobile) {
     return (
-      <Flex direction={"column"} bg={"black"} h="100%" w="100%">
+      <Flex direction={"column"} bg={"black"} h="100vh" w="100vw">
         <Box my={4} mx={2}>
           <RightPanel />
         </Box>
-        <Box height="50%">
+        <Box h={"50vh"} w={"100vw"} position="relative">
           {currentScene ? <Stage isMobile={true} /> : <MyGlobe />}
         </Box>
         <Box my={4} mx={2}>
@@ -28,7 +28,6 @@ const HomePage = () => {
 
   return (
     <Flex position="relative" p={5} h="100vh" w="100vw">
-      s
       <Box
         position="absolute"
         top={0}
