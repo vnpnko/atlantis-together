@@ -25,18 +25,30 @@ const RightPanel: React.FC = () => {
 
   if (isMobile) {
     return (
-      <Flex direction={"row"} justifyContent={"space-between"}>
-        <RightBox h={"170px"}>
+      <Flex
+        h={"20vh"}
+        direction={"row"}
+        justifyContent={"space-between"}
+        gap={2}
+        flex={1}
+      >
+        <RightBox w={"80vw"}>
           <VideoComponent />
         </RightBox>
         {iframeContent ? (
-          <RightBox w={"100px"} ref={iframeRef}>
+          <RightBox h={"full"} w={"20vw"} ref={iframeRef}>
             <CustomIframe src={iframeContent} />
           </RightBox>
         ) : (
           <>
-            <Flex direction={"column"} justifyContent={"space-between"}>
-              <RightBox h={"80px"} w={"100px"}>
+            <Flex
+              h={"full"}
+              w={"20vw"}
+              direction={"column"}
+              justifyContent={"space-between"}
+              gap={2}
+            >
+              <RightBox flex={1}>
                 <CustomImage
                   src={iframeBetterWorldTogether}
                   onClick={() =>
@@ -47,7 +59,7 @@ const RightPanel: React.FC = () => {
                 />
               </RightBox>
 
-              <RightBox h={"80px"} w={"100px"}>
+              <RightBox flex={1}>
                 <CustomImage
                   src={iframeKialo}
                   onClick={() =>
@@ -68,32 +80,25 @@ const RightPanel: React.FC = () => {
     <Flex
       direction={"column"}
       justifyContent={"space-between"}
-      h="660px"
-      width="400px"
+      h="full"
+      width="25vw"
     >
-      <RightBox h="220px">
+      <RightBox h="30%" mb={2}>
         <VideoComponent />
       </RightBox>
 
       {iframeContent ? (
-        <RightBox h="420px" ref={iframeRef}>
-          {/*<CustomButton*/}
-          {/*  position={"absolute"}*/}
-          {/*  bottom={2}*/}
-          {/*  left={"50%"}*/}
-          {/*  transform={"translateX(-50%)"}*/}
-          {/*  w={"100px"}*/}
-          {/*  onClick={() => setIframeContent("")}*/}
-          {/*  label="Close"*/}
-          {/*/>*/}
-          <CustomIframe
-            src={iframeContent}
-            // onMouseLeave={() => setIframeContent("")}
-          />
+        <RightBox h={"68%"} ref={iframeRef}>
+          <CustomIframe src={iframeContent} />
         </RightBox>
       ) : (
-        <>
-          <RightBox h="200px">
+        <Flex
+          direction="column"
+          justifyContent={"space-between"}
+          gap={2}
+          h={"68%"}
+        >
+          <RightBox h={"49%"}>
             <CustomImage
               src={iframeBetterWorldTogether}
               onMouseEnter={() =>
@@ -109,7 +114,7 @@ const RightPanel: React.FC = () => {
             />
           </RightBox>
 
-          <RightBox h="200px">
+          <RightBox h={"49%"}>
             <CustomImage
               src={iframeKialo}
               onMouseEnter={() =>
@@ -124,7 +129,7 @@ const RightPanel: React.FC = () => {
               }
             />
           </RightBox>
-        </>
+        </Flex>
       )}
     </Flex>
   );

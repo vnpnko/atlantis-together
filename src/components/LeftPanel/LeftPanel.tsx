@@ -75,8 +75,8 @@ const LeftPanel: React.FC = () => {
 
   return (
     <Box
-      width="400px"
-      h="660px"
+      w="25vw"
+      h="full"
       p={4}
       bg="black"
       border="2px"

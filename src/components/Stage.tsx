@@ -7,9 +7,15 @@ import locationsData from "../assets/data/locations.json";
 
 import { GlobeLocation } from "../models/globe/GlobeLocation";
 
-const locations: GlobeLocation[] = locationsData.map((location: GlobeLocation) => location);
+const locations: GlobeLocation[] = locationsData.map(
+  (location: GlobeLocation) => location,
+);
 
-const Stage: React.FC = () => {
+interface StageProps {
+  isMobile?: boolean;
+}
+
+const Stage: React.FC<StageProps> = ({ isMobile = false }) => {
   const [searchParams] = useSearchParams();
   const selectedSceneName = searchParams.get("scene");
 
@@ -25,10 +31,10 @@ const Stage: React.FC = () => {
     const rendererDom = renderer.domElement;
 
     // Set renderer styles
-    rendererDom.style.position = "fixed";
+    rendererDom.style.position = isMobile ? "relative" : "fixed";
     rendererDom.style.zIndex = "0";
     rendererDom.style.width = "100%";
-    rendererDom.style.height = "100%";
+    rendererDom.style.height = isMobile ? "70vh" : "100%";
     rendererDom.style.top = "0";
     rendererDom.style.left = "0";
 
@@ -97,7 +103,7 @@ const Stage: React.FC = () => {
       }
       renderer.dispose();
     };
-  }, [selectedSceneName]);
+  }, [selectedSceneName, isMobile]);
 
   return <div id="Stage" ref={stageRef} />;
 };
