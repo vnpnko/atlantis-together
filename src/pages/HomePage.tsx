@@ -4,11 +4,14 @@ import RightPanel from "../components/RightPanel/RightPanel.tsx";
 import MyGlobe from "../components/MyGlobe.tsx";
 import { useSearchParams } from "react-router-dom";
 import Stage from "../components/Stage.tsx";
+import { useState } from "react";
 
 const HomePage = () => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
+  const [hoveredEpisode, setHoveredEpisode] = useState<string | null>(null);
+
   const [searchParams] = useSearchParams();
   const currentScene = searchParams.get("scene");
-  const isMobile = useBreakpointValue({ base: true, md: false });
 
   if (isMobile) {
     return (
@@ -17,10 +20,14 @@ const HomePage = () => {
           <RightPanel />
         </Box>
         <Box h={"50vh"} w={"100vw"} position="relative">
-          {currentScene ? <Stage isMobile={true} /> : <MyGlobe />}
+          {currentScene ? (
+            <Stage isMobile={true} />
+          ) : (
+            <MyGlobe highlightedEpisode={hoveredEpisode} />
+          )}
         </Box>
         <Box mb={4} mx={2}>
-          <LeftPanel />
+          <LeftPanel setHoveredEpisode={setHoveredEpisode} />
         </Box>
       </Flex>
     );
@@ -36,10 +43,14 @@ const HomePage = () => {
         height="100%"
         zIndex={0}
       >
-        {currentScene ? <Stage /> : <MyGlobe />}
+        {currentScene ? (
+          <Stage />
+        ) : (
+          <MyGlobe highlightedEpisode={hoveredEpisode} />
+        )}
       </Box>
       <Box zIndex={1}>
-        <LeftPanel />
+        <LeftPanel setHoveredEpisode={setHoveredEpisode} />
       </Box>
       <Spacer />
       <Box zIndex={1}>

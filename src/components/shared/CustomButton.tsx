@@ -4,17 +4,19 @@ import { Button, ButtonProps } from "@chakra-ui/react";
 interface CustomButtonProps extends ButtonProps {
   isActive?: boolean;
   label: string;
-  onClick?: () => void;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
-  isActive,
   label,
+  isActive,
   onClick,
+  onMouseEnter,
+  onMouseLeave,
   ...props
 }) => {
   return (
     <Button
+      {...props}
       width="full"
       p={4}
       borderRadius="md"
@@ -26,7 +28,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       }}
       bgColor={isActive ? "yellow.700" : "yellow.500"}
       onClick={onClick}
-      {...props}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {label}
     </Button>

@@ -4,14 +4,15 @@ import { Box, Heading, useBreakpointValue, VStack } from "@chakra-ui/react";
 import MyGlobe from "../MyGlobe.tsx";
 import CustomButton from "../shared/CustomButton.tsx";
 import locationsData from "../../assets/data/locations.json";
-
 import { GlobeLocation } from "../../models/globe/GlobeLocation.ts";
 
-const locations: GlobeLocation[] = locationsData.map(
-  (location: GlobeLocation) => location,
-);
+interface LeftPanelProps {
+  setHoveredEpisode: (episode: string | null) => void;
+}
 
-const LeftPanel: React.FC = () => {
+const LeftPanel: React.FC<LeftPanelProps> = ({ setHoveredEpisode }) => {
+  const locations = locationsData as GlobeLocation[];
+
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const currentScene = searchParams.get("scene");
@@ -116,6 +117,12 @@ const LeftPanel: React.FC = () => {
             isActive={currentScene === label}
             label={label}
             onClick={() => handleSceneChange(label)}
+            onMouseEnter={() => {
+              setHoveredEpisode(label);
+            }}
+            onMouseLeave={() => {
+              setHoveredEpisode(null);
+            }}
             justifyContent="flex-start"
           />
         ))}

@@ -7,19 +7,22 @@ import arcsData from "../assets/data/arcs.json";
 import { GlobeLocation } from "../models/globe/GlobeLocation";
 import { GlobeArc } from "../models/globe/GlobeArc";
 
-const locations: GlobeLocation[] = locationsData.map(
-  (location: GlobeLocation) => location,
-);
-
-const arcs: GlobeArc[] = arcsData.map((arc: GlobeArc) => arc);
-
 interface MyGlobeProps {
   width?: number;
   height?: number;
   bgColor?: boolean;
+  highlightedEpisode?: string | null;
 }
 
-const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
+const MyGlobe: React.FC<MyGlobeProps> = ({
+  width,
+  height,
+  bgColor,
+  highlightedEpisode,
+}) => {
+  const locations = locationsData as GlobeLocation[];
+  const arcs = arcsData as GlobeArc[];
+
   const navigate = useNavigate();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -112,13 +115,15 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
         animateIn={false}
         htmlElement={(d: object) => {
           const el = document.createElement("div");
-          const isCurrentScene = currentScene === (d as GlobeLocation).label;
+          const isHighlighted =
+            highlightedEpisode === (d as GlobeLocation).label ||
+            currentScene === (d as GlobeLocation).label;
           el.innerHTML = `
           <div style="align-content: center; justify-content: center; display: flex; flex-direction: column; align-items: center;">
             <img src="/geotag.png" alt="Geotag" style="height: 40px;" />
             <p style="
               font-size: 20px;
-              color: ${isCurrentScene ? "#eab308" : "#fde047"};
+              color: ${isHighlighted ? "#eab308" : "#fde047"};
               font-weight: bold;
               text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
             ">${(d as GlobeLocation).label}</p>
