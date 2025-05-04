@@ -22,7 +22,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       fontWeight={700}
       color={"black"}
       _hover={{
-        bgColor: isActive ? "yellow.800" : "yellow.600",
+        bgColor: isActive ? "yellow.700" : "yellow.600",
       }}
       bgColor={isActive ? "yellow.700" : "yellow.500"}
       onClick={onClick}

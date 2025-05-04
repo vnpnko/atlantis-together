@@ -1,41 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import Globe, { GlobeMethods } from "react-globe.gl";
 import locationsData from "../assets/data/locations.json";
 import arcsData from "../assets/data/arcs.json";
+import { GlobeLocation } from "../types/GlobeLocation";
+import { GlobeArc } from "../types/GlobeArc";
 
-interface GlobeLocation {
-  lat: number;
-  lng: number;
-  label: string;
-  url: string;
-  source: string;
-}
+const arcs = arcsData as GlobeArc[];
 
-interface GlobeArc {
-  startLat: number;
-  startLng: number;
-  endLat: number;
-  endLng: number;
-  travelMode: string;
-}
-
-const arcs: GlobeArc[] = arcsData.map((arc) => ({
-  startLat: arc.startLat,
-  startLng: arc.startLng,
-  endLat: arc.endLat,
-  endLng: arc.endLng,
-  travelMode: arc.travelMode,
-}));
-
-const locations: GlobeLocation[] = locationsData.map((location) => ({
-  lat: location.lat,
-  lng: location.lng,
-  label: location.label,
-  url: location.url,
-  source: location.source,
-}));
+const locations = locationsData as GlobeLocation[];
 
 interface MyGlobeProps {
   width?: number;
@@ -107,6 +81,10 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
     };
   }, [width, height]);
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentScene = searchParams.get("scene");
+
   return (
     <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
       <Globe
@@ -122,7 +100,9 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
         arcsData={arcs}
         arcColor={() => "#fde047"}
         arcStroke={0.3}
-        arcAltitude={(arc: object) => (arc as GlobeArc).travelMode === "plane" ? 0.2 : 0.01}
+        arcAltitude={(arc: object) =>
+          (arc as GlobeArc).travelMode === "plane" ? 0.2 : 0.01
+        }
         arcDashLength={0.3}
         arcDashGap={0.05}
         arcDashInitialGap={() => Math.random()}
@@ -130,12 +110,13 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
         animateIn={false}
         htmlElement={(d: object) => {
           const el = document.createElement("div");
+          const isCurrentScene = currentScene === (d as GlobeLocation).label;
           el.innerHTML = `
           <div style="position: relative; align-content: center; justify-content: center; display: flex; flex-direction: column; align-items: center;">
             <img src="/geotag.png" alt="Geotag" style="height: 40px;" />
             <p style="
               font-size: 20px;
-              color: #fde047;
+              color: ${isCurrentScene ? "#eab308" : "#fde047"};
               font-weight: bold;
               text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
             ">${(d as GlobeLocation).label}</p>
