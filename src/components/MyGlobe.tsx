@@ -4,12 +4,14 @@ import * as THREE from "three";
 import Globe, { GlobeMethods } from "react-globe.gl";
 import locationsData from "../assets/data/locations.json";
 import arcsData from "../assets/data/arcs.json";
-import { GlobeLocation } from "../types/GlobeLocation";
-import { GlobeArc } from "../types/GlobeArc";
+import { GlobeLocation } from "../models/globe/GlobeLocation";
+import { GlobeArc } from "../models/globe/GlobeArc";
 
-const arcs = arcsData as GlobeArc[];
+const locations: GlobeLocation[] = locationsData.map(
+  (location: GlobeLocation) => location,
+);
 
-const locations = locationsData as GlobeLocation[];
+const arcs: GlobeArc[] = arcsData.map((arc: GlobeArc) => arc);
 
 interface MyGlobeProps {
   width?: number;
@@ -112,7 +114,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
           const el = document.createElement("div");
           const isCurrentScene = currentScene === (d as GlobeLocation).label;
           el.innerHTML = `
-          <div style="position: relative; align-content: center; justify-content: center; display: flex; flex-direction: column; align-items: center;">
+          <div style="align-content: center; justify-content: center; display: flex; flex-direction: column; align-items: center;">
             <img src="/geotag.png" alt="Geotag" style="height: 40px;" />
             <p style="
               font-size: 20px;

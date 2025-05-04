@@ -1,49 +1,29 @@
-// components/RightPanel/RightBox.tsx
-import React from "react";
-import { Box, Image } from "@chakra-ui/react";
-import CustomButton from "../shared/CustomButton.tsx";
+import React, { forwardRef } from "react";
+import { Box, BoxProps } from "@chakra-ui/react";
 
-interface RightBoxProps {
-  imageSrc: string;
-  onOpen: () => void;
+interface RightBoxProps extends BoxProps {
+  children?: React.ReactNode;
 }
 
-const RightBox: React.FC<RightBoxProps> = ({ imageSrc, onOpen }) => {
-  return (
-    <Box
-      w="full"
-      h="full"
-      position="relative"
-      bg="black"
-      border="2px"
-      borderRadius="lg"
-      borderColor="yellow.500"
-      cursor="pointer"
-      onClick={onOpen}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <CustomButton
-        label={"OPEN"}
-        onClick={onOpen}
-        position="absolute"
-        zIndex={1}
-        width={40}
-      />
-      <Image
-        src={imageSrc}
-        alt="Box Cover"
-        position="absolute"
-        top={0}
-        left={0}
-        w="full"
-        h="full"
-        objectFit="cover"
-        opacity={0.4}
-      />
-    </Box>
-  );
-};
+const RightBox = forwardRef<HTMLDivElement, RightBoxProps>(
+  ({ children, ...boxProps }, ref) => {
+    return (
+      <Box
+        ref={ref}
+        bg="black"
+        border="2px"
+        borderColor="yellow.500"
+        borderRadius="lg"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        cursor="pointer"
+        {...boxProps}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
 
 export default RightBox;

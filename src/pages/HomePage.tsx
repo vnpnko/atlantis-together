@@ -1,36 +1,33 @@
-import { Box, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Spacer, useBreakpointValue } from "@chakra-ui/react";
 import LeftPanel from "../components/LeftPanel/LeftPanel.tsx";
 import RightPanel from "../components/RightPanel/RightPanel.tsx";
 import MyGlobe from "../components/MyGlobe.tsx";
-import Stage from "../components/Stage.tsx";
 import { useSearchParams } from "react-router-dom";
-import IframeOverlay from "../components/IframeOverlay.tsx";
-import { useState } from "react";
+import Stage from "../components/Stage.tsx";
 
 const HomePage = () => {
   const [searchParams] = useSearchParams();
   const currentScene = searchParams.get("scene");
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
-  const [showIframe, setShowIframe] = useState<boolean>(false);
-  const [iframeContent, setIframeContent] = useState<string>("");
-
-  const handleBoxClick = (contentUrl: string) => {
-    setIframeContent(contentUrl);
-    setShowIframe(true);
-  };
-
-  const handleCloseOverlay = () => {
-    setShowIframe(false);
-    setIframeContent("");
-  };
-
-  const findSource = () => {
-    window.open(iframeContent, "_blank");
-  };
+  if (isMobile) {
+    return (
+      <Flex direction={"column"} bg={"black"} h="100vh" w="100vw">
+        <Box mt={4} mx={2}>
+          <RightPanel />
+        </Box>
+        <Box h={"50vh"} w={"100vw"} position="relative">
+          {currentScene ? <Stage isMobile={true} /> : <MyGlobe />}
+        </Box>
+        <Box mb={4} mx={2}>
+          <LeftPanel />
+        </Box>
+      </Flex>
+    );
+  }
 
   return (
-    <Flex position="relative" p={5} h="100vh" w="100vw" align="stretch">
-      {/* Background Box */}
+    <Flex position="relative" p={5} h="100vh" w="100vw">
       <Box
         position="absolute"
         top={0}
@@ -41,27 +38,12 @@ const HomePage = () => {
       >
         {currentScene ? <Stage /> : <MyGlobe />}
       </Box>
-      {/* Foreground Panels */}
       <Box zIndex={1}>
         <LeftPanel />
       </Box>
-      {/* Iframe Overlay */}
-      {showIframe && (
-        <Box h="540px" w="full" zIndex={2}>
-          <IframeOverlay
-            contentUrl={iframeContent}
-            onClose={handleCloseOverlay}
-            findSource={findSource}
-          />
-        </Box>
-      )}
       <Spacer />
       <Box zIndex={1}>
-        <RightPanel
-          onBoxClick={handleBoxClick}
-          onCloseOverlay={handleCloseOverlay}
-          findSource={findSource}
-        />
+        <RightPanel />
       </Box>
     </Flex>
   );

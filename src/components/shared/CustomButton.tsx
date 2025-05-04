@@ -4,7 +4,7 @@ import { Button, ButtonProps } from "@chakra-ui/react";
 interface CustomButtonProps extends ButtonProps {
   isActive?: boolean;
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({

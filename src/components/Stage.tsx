@@ -5,23 +5,17 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { LumaSplatsThree } from "@lumaai/luma-web";
 import locationsData from "../assets/data/locations.json";
 
-interface GlobeLocation {
-  lat: number;
-  lng: number;
-  label: string;
-  url: string;
-  source: string;
+import { GlobeLocation } from "../models/globe/GlobeLocation";
+
+const locations: GlobeLocation[] = locationsData.map(
+  (location: GlobeLocation) => location,
+);
+
+interface StageProps {
+  isMobile?: boolean;
 }
 
-const locations: GlobeLocation[] = locationsData.map((location) => ({
-  lat: location.lat,
-  lng: location.lng,
-  label: location.label,
-  url: location.url,
-  source: location.source,
-}));
-
-const Stage: React.FC = () => {
+const Stage: React.FC<StageProps> = ({ isMobile = false }) => {
   const [searchParams] = useSearchParams();
   const selectedSceneName = searchParams.get("scene");
 
@@ -37,10 +31,10 @@ const Stage: React.FC = () => {
     const rendererDom = renderer.domElement;
 
     // Set renderer styles
-    rendererDom.style.position = "fixed";
+    rendererDom.style.position = isMobile ? "relative" : "fixed";
     rendererDom.style.zIndex = "0";
-    rendererDom.style.width = "100%";
-    rendererDom.style.height = "100%";
+    rendererDom.style.width = isMobile ? "100vw" : "100%";
+    rendererDom.style.height = isMobile ? "50vh" : "100%";
     rendererDom.style.top = "0";
     rendererDom.style.left = "0";
 
@@ -109,7 +103,7 @@ const Stage: React.FC = () => {
       }
       renderer.dispose();
     };
-  }, [selectedSceneName]);
+  }, [selectedSceneName, isMobile]);
 
   return <div id="Stage" ref={stageRef} />;
 };
