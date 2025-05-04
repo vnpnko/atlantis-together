@@ -92,8 +92,8 @@ const LeftPanel: React.FC = () => {
         mb={4}
         textAlign="center"
         cursor="pointer"
-        color={"yellow.500"}
-        _hover={{ color: "yellow.700" }}
+        color={"yellow.400"}
+        _hover={{ color: "yellow.500" }}
         onClick={() => navigate("/")}
       >
         Atlantis Together

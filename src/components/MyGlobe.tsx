@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import Globe, { GlobeMethods } from "react-globe.gl";
 import locationsData from "../assets/data/locations.json";
@@ -83,6 +83,10 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
     };
   }, [width, height]);
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentScene = searchParams.get("scene");
+
   return (
     <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
       <Globe
@@ -108,12 +112,13 @@ const MyGlobe: React.FC<MyGlobeProps> = ({ width, height, bgColor }) => {
         animateIn={false}
         htmlElement={(d: object) => {
           const el = document.createElement("div");
+          const isCurrentScene = currentScene === (d as GlobeLocation).label;
           el.innerHTML = `
           <div style="align-content: center; justify-content: center; display: flex; flex-direction: column; align-items: center;">
             <img src="/geotag.png" alt="Geotag" style="height: 40px;" />
             <p style="
               font-size: 20px;
-              color: #fde047;
+              color: ${isCurrentScene ? "#eab308" : "#fde047"};
               font-weight: bold;
               text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
             ">${(d as GlobeLocation).label}</p>
