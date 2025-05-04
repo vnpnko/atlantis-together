@@ -3,12 +3,14 @@ import { Button, ButtonProps } from "@chakra-ui/react";
 
 interface CustomButtonProps extends ButtonProps {
   isActive?: boolean;
+  isHovered?: boolean;
   label: string;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   label,
   isActive,
+  isHovered,
   onClick,
   onMouseEnter,
   onMouseLeave,
@@ -26,7 +28,9 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       _hover={{
         bgColor: isActive ? "yellow.700" : "yellow.600",
       }}
-      bgColor={isActive ? "yellow.700" : "yellow.500"}
+      bgColor={
+        isActive ? "yellow.700" : isHovered ? "yellow.600" : "yellow.500"
+      }
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}

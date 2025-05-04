@@ -7,10 +7,14 @@ import locationsData from "../../assets/data/locations.json";
 import { GlobeLocation } from "../../models/globe/GlobeLocation.ts";
 
 interface LeftPanelProps {
+  hoveredEpisode: string | null;
   setHoveredEpisode: (episode: string | null) => void;
 }
 
-const LeftPanel: React.FC<LeftPanelProps> = ({ setHoveredEpisode }) => {
+const LeftPanel: React.FC<LeftPanelProps> = ({
+  hoveredEpisode,
+  setHoveredEpisode,
+}) => {
   const locations = locationsData as GlobeLocation[];
 
   const navigate = useNavigate();
@@ -56,7 +60,13 @@ const LeftPanel: React.FC<LeftPanelProps> = ({ setHoveredEpisode }) => {
             borderRadius="md"
             overflow="hidden"
           >
-            <MyGlobe width={365} height={250} bgColor={true} />
+            <MyGlobe
+              width={365}
+              height={250}
+              bgColor={true}
+              hoveredEpisode={hoveredEpisode}
+              setHoveredEpisode={setHoveredEpisode}
+            />
           </Box>
         )}
         <VStack spacing={3} pr={2} flex="1" overflowY="auto">
@@ -107,7 +117,13 @@ const LeftPanel: React.FC<LeftPanelProps> = ({ setHoveredEpisode }) => {
           borderRadius="md"
           overflow="hidden"
         >
-          <MyGlobe width={365} height={250} bgColor={true} />
+          <MyGlobe
+            width={365}
+            height={250}
+            bgColor={true}
+            hoveredEpisode={hoveredEpisode}
+            setHoveredEpisode={setHoveredEpisode}
+          />
         </Box>
       )}
       <VStack spacing={3} pr={2} flex="1" overflowY="auto">
@@ -115,6 +131,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({ setHoveredEpisode }) => {
           <CustomButton
             key={label}
             isActive={currentScene === label}
+            isHovered={hoveredEpisode === label}
             label={label}
             onClick={() => handleSceneChange(label)}
             onMouseEnter={() => {

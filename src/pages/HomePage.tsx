@@ -23,11 +23,17 @@ const HomePage = () => {
           {currentScene ? (
             <Stage isMobile={true} />
           ) : (
-            <MyGlobe highlightedEpisode={hoveredEpisode} />
+            <MyGlobe
+              hoveredEpisode={hoveredEpisode}
+              setHoveredEpisode={setHoveredEpisode}
+            />
           )}
         </Box>
         <Box mb={4} mx={2}>
-          <LeftPanel setHoveredEpisode={setHoveredEpisode} />
+          <LeftPanel
+            hoveredEpisode={hoveredEpisode}
+            setHoveredEpisode={setHoveredEpisode}
+          />
         </Box>
       </Flex>
     );
@@ -46,11 +52,17 @@ const HomePage = () => {
         {currentScene ? (
           <Stage />
         ) : (
-          <MyGlobe highlightedEpisode={hoveredEpisode} />
+          <MyGlobe
+            hoveredEpisode={hoveredEpisode}
+            setHoveredEpisode={setHoveredEpisode}
+          />
         )}
       </Box>
       <Box zIndex={1}>
-        <LeftPanel setHoveredEpisode={setHoveredEpisode} />
+        <LeftPanel
+          hoveredEpisode={hoveredEpisode}
+          setHoveredEpisode={setHoveredEpisode}
+        />
       </Box>
       <Spacer />
       <Box zIndex={1}>

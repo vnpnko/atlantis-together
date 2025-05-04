@@ -11,14 +11,16 @@ interface MyGlobeProps {
   width?: number;
   height?: number;
   bgColor?: boolean;
-  highlightedEpisode?: string | null;
+  hoveredEpisode: string | null;
+  setHoveredEpisode: (episode: string | null) => void;
 }
 
 const MyGlobe: React.FC<MyGlobeProps> = ({
   width,
   height,
   bgColor,
-  highlightedEpisode,
+  hoveredEpisode,
+  setHoveredEpisode,
 }) => {
   const locations = locationsData as GlobeLocation[];
   const arcs = arcsData as GlobeArc[];
@@ -116,7 +118,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
         htmlElement={(d: object) => {
           const el = document.createElement("div");
           const isHighlighted =
-            highlightedEpisode === (d as GlobeLocation).label ||
+            hoveredEpisode === (d as GlobeLocation).label ||
             currentScene === (d as GlobeLocation).label;
           el.innerHTML = `
           <div style="align-content: center; justify-content: center; display: flex; flex-direction: column; align-items: center;">
@@ -128,6 +130,15 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
               text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
             ">${(d as GlobeLocation).label}</p>
           </div>`;
+          const textElement = el.querySelector("p");
+          el.onmouseover = () => {
+            textElement!.style.color = "#eab308";
+            setHoveredEpisode((d as GlobeLocation).label);
+          };
+          el.onmouseout = () => {
+            textElement!.style.color = isHighlighted ? "#eab308" : "#fde047";
+            setHoveredEpisode(null);
+          };
           el.style.pointerEvents = "auto";
           el.style.cursor = "pointer";
           el.onclick = () => navigate(`/?scene=${(d as GlobeLocation).label}`);
