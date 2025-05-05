@@ -88,7 +88,14 @@ const RightPanel: React.FC = () => {
       </RightBox>
 
       {iframeContent ? (
-        <RightBox h={"68%"} ref={iframeRef}>
+        <RightBox
+          position={"absolute"}
+          bottom={5}
+          right={5}
+          w={"40%"}
+          h={"64%"}
+          ref={iframeRef}
+        >
           <CustomIframe src={iframeContent} />
         </RightBox>
       ) : (
