@@ -108,7 +108,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
         arcColor={() => "#fde047"}
         arcStroke={0.3}
         arcAltitude={(arc: object) =>
-          (arc as GlobeArc).travelMode === "plane" ? 0.2 : 0.01
+          (arc as GlobeArc).travelMode === "plane" ? 0.1 : 0.01
         }
         arcDashLength={0.3}
         arcDashGap={0.05}
