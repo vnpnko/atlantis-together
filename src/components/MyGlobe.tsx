@@ -1,4 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useRef,
+  // useState
+} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import Globe, { GlobeMethods } from "react-globe.gl";
@@ -30,11 +34,12 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
 
-  const [containerWidth, setContainerWidth] = useState<number>(width ?? 0);
-  const [containerHeight, setContainerHeight] = useState<number>(height ?? 0);
-
   const cloudlessTile = (x: number, y: number, z: number) =>
     `https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024_3857/default/g/${z}/${y}/${x}.jpg`;
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentScene = searchParams.get("scene");
 
   useEffect(() => {
     const globe = globeRef.current;
@@ -44,16 +49,16 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
 
     globe.controls().maxDistance = 300;
 
-    const CLOUDS_ALT = 0.004;
+    const CLOUDS_ALT = 0.01;
     const CLOUDS_ROTATION_SPEED = -0.006;
-    let animationFrameId: number;
+    let animationFrameId = 0;
 
     new THREE.TextureLoader().load("/clouds.png", (cloudsTexture) => {
       const clouds = new THREE.Mesh(
         new THREE.SphereGeometry(
           globe.getGlobeRadius() * (1 + CLOUDS_ALT),
-          75,
-          75,
+          50,
+          50,
         ),
         new THREE.MeshPhongMaterial({
           map: cloudsTexture,
@@ -71,29 +76,8 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
       rotateClouds();
     });
 
-    const updateDimensions = () => {
-      if (containerRef.current) {
-        if (!width) {
-          setContainerWidth(containerRef.current.clientWidth);
-        }
-        if (!height) {
-          setContainerHeight(containerRef.current.clientHeight);
-        }
-      }
-    };
-
-    updateDimensions();
-
-    return () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-    };
-  }, [width, height]);
-
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const currentScene = searchParams.get("scene");
+    cancelAnimationFrame(animationFrameId);
+  }, []);
 
   return (
     <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
@@ -103,8 +87,8 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
         backgroundImageUrl={bgColor ? undefined : "/night-sky.png"}
         backgroundColor={bgColor ? "black" : undefined}
         bumpImageUrl="/earth-topology.png"
-        width={containerWidth}
-        height={containerHeight}
+        width={width}
+        height={height}
         globeTileEngineUrl={cloudlessTile}
         labelsData={locations}
         htmlElementsData={locations}
