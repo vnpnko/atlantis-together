@@ -12,5 +12,33 @@
     "endLat": 37.5903,
     "endLng": 23.4341,
     "travelMode": "car"
+  },
+  {
+    "startLat": 47.2954,
+    "startLng": 19.0207,
+    "endLat": 48.5124,
+    "endLng": 2.2180,
+    "travelMode": "plane"
+  },
+  {
+    "startLat": 48.5124,
+    "startLng": 2.2180,
+    "endLat": 9.3033,
+    "endLng": -13.4244,
+    "travelMode": "plane"
+  },
+  {
+    "startLat": 9.3033,
+    "startLng": -13.4244,
+    "endLat": 18.0507,
+    "endLng": -15.5821,
+    "travelMode": "plane"
+  },
+  {
+    "startLat": 18.0507,
+    "startLng": -15.5821,
+    "endLat": 20.3810,
+    "endLng": -12.4327,
+    "travelMode": "car"
   }
 ]

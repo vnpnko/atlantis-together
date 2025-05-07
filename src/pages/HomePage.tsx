@@ -24,6 +24,9 @@ const HomePage = () => {
             <Stage isMobile={true} />
           ) : (
             <MyGlobe
+              width={window.innerWidth}
+              height={window.innerHeight - 1}
+              bgColor={false}
               hoveredEpisode={hoveredEpisode}
               setHoveredEpisode={setHoveredEpisode}
             />
@@ -53,6 +56,9 @@ const HomePage = () => {
           <Stage />
         ) : (
           <MyGlobe
+            width={window.innerWidth}
+            height={window.innerHeight - 1}
+            bgColor={false}
             hoveredEpisode={hoveredEpisode}
             setHoveredEpisode={setHoveredEpisode}
           />

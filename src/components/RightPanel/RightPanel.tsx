@@ -6,20 +6,10 @@ import iframeKialo from "../../assets/images/iframe_kialo.png";
 import iframeBetterWorldTogether from "../../assets/images/iframe_betterworldtogether.png";
 import CustomIframe from "./CustomIframe.tsx";
 import CustomImage from "./CustomImage.tsx";
-import { useOutsideClick } from "@chakra-ui/react";
 
 const RightPanel: React.FC = () => {
   const [iframeContent, setIframeContent] = useState<string>("");
   const iframeRef = useRef<HTMLDivElement>(null);
-
-  useOutsideClick({
-    ref: iframeRef,
-    handler: () => {
-      if (iframeContent) {
-        setIframeContent("");
-      }
-    },
-  });
 
   const isMobile = useBreakpointValue({ base: true, md: false });
 
@@ -37,7 +27,10 @@ const RightPanel: React.FC = () => {
         </RightBox>
         {iframeContent ? (
           <RightBox h={"full"} w={"20vw"} ref={iframeRef}>
-            <CustomIframe src={iframeContent} />
+            <CustomIframe
+              src={iframeContent}
+              onClose={() => setIframeContent("")}
+            />
           </RightBox>
         ) : (
           <>
@@ -96,7 +89,10 @@ const RightPanel: React.FC = () => {
           h={"64%"}
           ref={iframeRef}
         >
-          <CustomIframe src={iframeContent} />
+          <CustomIframe
+            src={iframeContent}
+            onClose={() => setIframeContent("")}
+          />
         </RightBox>
       ) : (
         <Flex
