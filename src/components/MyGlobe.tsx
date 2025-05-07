@@ -33,13 +33,15 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
   const [containerWidth, setContainerWidth] = useState<number>(width ?? 0);
   const [containerHeight, setContainerHeight] = useState<number>(height ?? 0);
 
+  const cloudlessTile = (x: number, y: number, z: number) =>
+    `https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024_3857/default/g/${z}/${y}/${x}.jpg`;
+
   useEffect(() => {
     const globe = globeRef.current;
     if (!globe) {
       return;
     }
 
-    globe.controls().minDistance = 120;
     globe.controls().maxDistance = 300;
 
     const CLOUDS_ALT = 0.004;
@@ -56,6 +58,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
         new THREE.MeshPhongMaterial({
           map: cloudsTexture,
           transparent: true,
+          opacity: 0.4,
         }),
       );
       globe.scene().add(clouds);
@@ -102,6 +105,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
         bumpImageUrl="/earth-topology.png"
         width={containerWidth}
         height={containerHeight}
+        globeTileEngineUrl={cloudlessTile}
         labelsData={locations}
         htmlElementsData={locations}
         arcsData={arcs}
