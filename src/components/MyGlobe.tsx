@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  useRef,
-  // useState
-} from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import Globe, { GlobeMethods } from "react-globe.gl";
@@ -12,9 +8,9 @@ import { GlobeLocation } from "../models/globe/GlobeLocation";
 import { GlobeArc } from "../models/globe/GlobeArc";
 
 interface MyGlobeProps {
-  width?: number;
-  height?: number;
-  bgColor?: boolean;
+  width: number;
+  height: number;
+  bgColor: boolean;
   hoveredEpisode: string | null;
   setHoveredEpisode: (episode: string | null) => void;
 }
@@ -80,7 +76,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
   }, []);
 
   return (
-    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+    <div ref={containerRef}>
       <Globe
         ref={globeRef}
         globeImageUrl="/earth-surface.png"
