@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, BoxProps, Button } from "@chakra-ui/react";
+import { Box, BoxProps, Button, useBreakpointValue } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 
 interface CustomIframeProps extends BoxProps {
@@ -8,6 +8,7 @@ interface CustomIframeProps extends BoxProps {
 }
 
 const CustomIframe: React.FC<CustomIframeProps> = ({ src, onClose }) => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
   const isWixsite = src.includes("wixsite");
 
   return (
@@ -28,13 +29,21 @@ const CustomIframe: React.FC<CustomIframeProps> = ({ src, onClose }) => {
       <Box
         style={
           isWixsite
-            ? {
-                transform: "scale(0.6)", // Scale to 80% to zoom out
-                transformOrigin: "0 0", // Keep the scaling from the top-left corner
-                width: "167%", // Adjust width if needed
-                height: "167%", // Adjust height if needed
-                overflow: "hidden", // Hide any content that overflows
-              }
+            ? isMobile
+              ? {
+                  transform: "scale(1)",
+                  transformOrigin: "0 0",
+                  width: "100%",
+                  height: "100%",
+                  overflow: "hidden",
+                }
+              : {
+                  transform: "scale(0.6)", // Scale to 80% to zoom out
+                  transformOrigin: "0 0", // Keep the scaling from the top-left corner
+                  width: "167%", // Adjust width if needed
+                  height: "167%", // Adjust height if needed
+                  overflow: "hidden", // Hide any content that overflows
+                }
             : {}
         }
         as="iframe"
