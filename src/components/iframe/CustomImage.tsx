@@ -2,10 +2,15 @@ import React from "react";
 import { BoxProps, Image } from "@chakra-ui/react";
 
 interface CustomImageProps extends BoxProps {
+  isOpen?: boolean;
   src: string;
 }
 
-const CustomImage: React.FC<CustomImageProps> = ({ src, ...boxProps }) => {
+const CustomImage: React.FC<CustomImageProps> = ({
+  isOpen,
+  src,
+  ...boxProps
+}) => {
   return (
     <Image
       src={src}
@@ -13,7 +18,7 @@ const CustomImage: React.FC<CustomImageProps> = ({ src, ...boxProps }) => {
       w="full"
       h="full"
       objectFit="cover"
-      opacity={0.4}
+      opacity={isOpen ? 1 : 0.4}
       {...boxProps}
     />
   );

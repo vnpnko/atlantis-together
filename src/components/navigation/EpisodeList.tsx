@@ -25,7 +25,7 @@ export const EpisodeList: React.FC<EpisodeListProps> = ({
   };
 
   return (
-    <VStack spacing={3} px={2} overflowY="auto">
+    <VStack spacing={3} p={2} overflowY="auto">
       {episodes.map(({ label }) => (
         <CustomButton
           key={label}

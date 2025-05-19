@@ -11,9 +11,10 @@ const ContentBox = forwardRef<HTMLDivElement, RightBoxProps>(
       <Box
         ref={ref}
         bg="black"
+        borderRadius="lg"
+        overflow={"hidden"}
         border="2px"
         borderColor="yellow.500"
-        borderRadius="lg"
         display="flex"
         alignItems="center"
         justifyContent="center"
