@@ -38,6 +38,7 @@ const CustomIframe: React.FC<CustomIframeProps> = ({ src, onClose }) => {
             : {}
         }
         as="iframe"
+        sandbox="allow-scripts allow-same-origin"
         w="full"
         h="full"
         src={src}

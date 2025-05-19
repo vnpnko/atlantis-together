@@ -27,21 +27,15 @@ const HomePage = () => {
           />
         </Box>
         <Box h={"50vh"} w={"100vw"} position="relative">
-          {currentScene ? (
-            iframeContent ? (
-              <ContentBox h={"full"} m={2}>
-                <CustomIframe
-                  src={iframeContent}
-                  onClose={() => setIframeContent("")}
-                />
-              </ContentBox>
-            ) : (
-              // <CustomIframe
-              //   src={iframeContent}
-              //   onClose={() => setIframeContent("")}
-              // />
-              <Stage isMobile={true} />
-            )
+          {iframeContent ? (
+            <ContentBox h={"full"} m={2}>
+              <CustomIframe
+                src={iframeContent}
+                onClose={() => setIframeContent("")}
+              />
+            </ContentBox>
+          ) : currentScene ? (
+            <Stage isMobile={true} />
           ) : (
             <MyGlobe
               width={window.innerWidth}
