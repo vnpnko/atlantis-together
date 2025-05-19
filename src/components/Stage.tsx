@@ -12,10 +12,11 @@ const locations: GlobeLocation[] = locationsData.map(
 );
 
 interface StageProps {
+  height?: number;
   isMobile?: boolean;
 }
 
-const Stage: React.FC<StageProps> = ({ isMobile = false }) => {
+const Stage: React.FC<StageProps> = ({ height = 100, isMobile = false }) => {
   const [searchParams] = useSearchParams();
   const selectedSceneName = searchParams.get("scene");
 
@@ -33,8 +34,8 @@ const Stage: React.FC<StageProps> = ({ isMobile = false }) => {
     // Set renderer styles
     rendererDom.style.position = isMobile ? "relative" : "fixed";
     rendererDom.style.zIndex = "0";
-    rendererDom.style.width = isMobile ? "100vw" : "100%";
-    rendererDom.style.height = isMobile ? "50vh" : "100%";
+    rendererDom.style.width = "100%";
+    rendererDom.style.height = isMobile ? `${height}px` : "100%";
     rendererDom.style.top = "0";
     rendererDom.style.left = "0";
 

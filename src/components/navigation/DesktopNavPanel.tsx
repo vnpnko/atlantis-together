@@ -21,8 +21,8 @@ const DesktopNavPanel: React.FC<DesktopNavPanelProps> = ({
 
   return (
     <Box
-      w="25vw"
-      h="full"
+      w={window.innerWidth * 0.25}
+      h={"100%"}
       p={4}
       bg="black"
       border="2px"
@@ -30,20 +30,20 @@ const DesktopNavPanel: React.FC<DesktopNavPanelProps> = ({
       borderColor="yellow.500"
       display="flex"
       flexDirection="column"
+      gap={4}
     >
       <ListHeader resetIframe={() => setIframeContent("")} />
 
       {currentScene && (
         <Box
-          mb={4}
           display="flex"
           justifyContent="center"
           borderRadius="md"
           overflow="hidden"
         >
           <MyGlobe
-            width={365}
-            height={250}
+            width={window.innerWidth}
+            height={window.innerHeight * 0.3}
             bgColor={true}
             hoveredEpisode={hoveredEpisode}
             setHoveredEpisode={setHoveredEpisode}

@@ -18,7 +18,7 @@ const MobileNavPanel: React.FC<MobileNavPanelProps> = ({
   const [searchParams] = useSearchParams();
   const currentScene = searchParams.get("scene");
 
-  const minHeight = 100;
+  const minHeight = window.innerHeight * 0.1;
   const maxHeight = window.innerHeight * 0.5;
 
   const [height, setHeight] = useState<number>(minHeight);
@@ -63,16 +63,13 @@ const MobileNavPanel: React.FC<MobileNavPanelProps> = ({
       borderTop="2px solid"
       borderColor="yellow.500"
       zIndex={20}
-      overflowY="auto"
+      overflowY="hidden"
       style={{ touchAction: "none" }}
     >
       <Box
-        w="50px"
-        h="4px"
-        bg="yellow.500"
-        borderRadius="full"
-        mx="auto"
-        my={2}
+        position={"absolute"}
+        w="full"
+        h="100px"
         cursor="grab"
         onPointerDown={handlePointerDown}
       />

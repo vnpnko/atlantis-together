@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
@@ -9,11 +9,10 @@ export const ListHeader = ({ resetIframe }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <Heading
-      as="h1"
-      size="lg"
+    <Text
+      fontSize="xl"
+      fontWeight="bold"
       p={3}
-      mb={4}
       textAlign="center"
       cursor="pointer"
       color="yellow.400"
@@ -24,6 +23,6 @@ export const ListHeader = ({ resetIframe }: Props) => {
       }}
     >
       Atlantis Together
-    </Heading>
+    </Text>
   );
 };
