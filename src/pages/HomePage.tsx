@@ -50,6 +50,7 @@ const HomePage = () => {
           <NavigationPanel
             hoveredEpisode={hoveredEpisode}
             setHoveredEpisode={setHoveredEpisode}
+            setIframeContent={setIframeContent}
           />
         </Box>
       </Flex>
@@ -82,6 +83,7 @@ const HomePage = () => {
         <NavigationPanel
           hoveredEpisode={hoveredEpisode}
           setHoveredEpisode={setHoveredEpisode}
+          setIframeContent={setIframeContent}
         />
       </Box>
       <Spacer />

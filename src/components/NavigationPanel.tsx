@@ -9,11 +9,13 @@ import { GlobeLocation } from "../models/globe/GlobeLocation.ts";
 interface LeftPanelProps {
   hoveredEpisode: string | null;
   setHoveredEpisode: (episode: string | null) => void;
+  setIframeContent: (url: string) => void;
 }
 
 const NavigationPanel: React.FC<LeftPanelProps> = ({
   hoveredEpisode,
   setHoveredEpisode,
+  setIframeContent,
 }) => {
   const locations = locationsData as GlobeLocation[];
 
@@ -93,7 +95,10 @@ const NavigationPanel: React.FC<LeftPanelProps> = ({
         cursor="pointer"
         color={"yellow.400"}
         _hover={{ color: "yellow.500" }}
-        onClick={() => navigate("/")}
+        onClick={() => {
+          setIframeContent("");
+          navigate("/");
+        }}
       >
         Atlantis Together
       </Heading>
