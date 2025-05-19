@@ -5,7 +5,7 @@ interface RightBoxProps extends BoxProps {
   children?: React.ReactNode;
 }
 
-const RightBox = forwardRef<HTMLDivElement, RightBoxProps>(
+const ContentBox = forwardRef<HTMLDivElement, RightBoxProps>(
   ({ children, ...boxProps }, ref) => {
     return (
       <Box
@@ -26,4 +26,4 @@ const RightBox = forwardRef<HTMLDivElement, RightBoxProps>(
   },
 );
 
-export default RightBox;
+export default ContentBox;
