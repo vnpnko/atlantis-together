@@ -9,7 +9,7 @@ const videoUrls: Record<string, string> = {
   Budapest: "https://www.youtube.com/embed/N0QblwXyXvo",
 };
 
-const VideoComponent: React.FC = () => {
+const Video: React.FC = () => {
   const [searchParams] = useSearchParams();
   const scene = searchParams.get("scene") || "default";
   const videoUrl = videoUrls[scene] || videoUrls.default;
@@ -17,4 +17,4 @@ const VideoComponent: React.FC = () => {
   return <Box as="iframe" h="full" w="full" src={videoUrl} allowFullScreen />;
 };
 
-export default VideoComponent;
+export default Video;

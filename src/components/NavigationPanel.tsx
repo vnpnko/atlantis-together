@@ -1,19 +1,21 @@
 import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Box, Heading, useBreakpointValue, VStack } from "@chakra-ui/react";
-import MyGlobe from "../MyGlobe.tsx";
-import CustomButton from "../shared/CustomButton.tsx";
-import locationsData from "../../assets/data/locations.json";
-import { GlobeLocation } from "../../models/globe/GlobeLocation.ts";
+import MyGlobe from "./MyGlobe.tsx";
+import CustomButton from "./ui/CustomButton.tsx";
+import locationsData from "../assets/data/locations.json";
+import { GlobeLocation } from "../models/globe/GlobeLocation.ts";
 
 interface LeftPanelProps {
   hoveredEpisode: string | null;
   setHoveredEpisode: (episode: string | null) => void;
+  setIframeContent: (url: string) => void;
 }
 
-const LeftPanel: React.FC<LeftPanelProps> = ({
+const NavigationPanel: React.FC<LeftPanelProps> = ({
   hoveredEpisode,
   setHoveredEpisode,
+  setIframeContent,
 }) => {
   const locations = locationsData as GlobeLocation[];
 
@@ -29,46 +31,34 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
 
   if (isMobile) {
     return (
-      <Box
-        width="full"
-        p={4}
-        bg="black"
-        border="2px"
-        borderRadius="lg"
-        borderColor="yellow.500"
-        display="flex"
-        flexDirection="column"
-      >
+      <Box height={"250px"} width="full" display="flex" flexDirection="column">
         <Heading
-          as="h1"
           size="lg"
           p={3}
-          mb={4}
           textAlign="center"
-          cursor="pointer"
           color={"yellow.500"}
           _hover={{ color: "yellow.700" }}
           onClick={() => navigate("/")}
         >
           Atlantis Together
         </Heading>
-        {currentScene && (
-          <Box
-            mb={4}
-            display="flex"
-            justifyContent="center"
-            borderRadius="md"
-            overflow="hidden"
-          >
-            <MyGlobe
-              width={365}
-              height={250}
-              bgColor={true}
-              hoveredEpisode={hoveredEpisode}
-              setHoveredEpisode={setHoveredEpisode}
-            />
-          </Box>
-        )}
+        {/*{currentScene && (*/}
+        {/*  <Box*/}
+        {/*    mb={4}*/}
+        {/*    display="flex"*/}
+        {/*    justifyContent="center"*/}
+        {/*    borderRadius="md"*/}
+        {/*    overflow="hidden"*/}
+        {/*  >*/}
+        {/*    <MyGlobe*/}
+        {/*      width={365}*/}
+        {/*      height={250}*/}
+        {/*      bgColor={true}*/}
+        {/*      hoveredEpisode={hoveredEpisode}*/}
+        {/*      setHoveredEpisode={setHoveredEpisode}*/}
+        {/*    />*/}
+        {/*  </Box>*/}
+        {/*)}*/}
         <VStack spacing={3} pr={2} flex="1" overflowY="auto">
           {locations.map(({ label }) => (
             <CustomButton
@@ -105,7 +95,10 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
         cursor="pointer"
         color={"yellow.400"}
         _hover={{ color: "yellow.500" }}
-        onClick={() => navigate("/")}
+        onClick={() => {
+          setIframeContent("");
+          navigate("/");
+        }}
       >
         Atlantis Together
       </Heading>
@@ -148,4 +141,4 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
   );
 };
 
-export default LeftPanel;
+export default NavigationPanel;

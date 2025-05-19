@@ -1,12 +1,16 @@
 import { Box, Flex, Spacer, useBreakpointValue } from "@chakra-ui/react";
-import LeftPanel from "../components/LeftPanel/LeftPanel.tsx";
-import RightPanel from "../components/RightPanel/RightPanel.tsx";
+import NavigationPanel from "../components/NavigationPanel.tsx";
+import ContentPanel from "../components/ContentPanel.tsx";
 import MyGlobe from "../components/MyGlobe.tsx";
 import { useSearchParams } from "react-router-dom";
 import Stage from "../components/Stage.tsx";
 import { useState } from "react";
+import CustomIframe from "../components/ui/CustomIframe.tsx";
+import ContentBox from "../components/ui/ContentBox.tsx";
 
 const HomePage = () => {
+  const [iframeContent, setIframeContent] = useState<string>("");
+
   const isMobile = useBreakpointValue({ base: true, md: false });
   const [hoveredEpisode, setHoveredEpisode] = useState<string | null>(null);
 
@@ -16,16 +20,26 @@ const HomePage = () => {
   if (isMobile) {
     return (
       <Flex direction={"column"} bg={"black"} h="100vh" w="100vw">
-        <Box mt={4} mx={2}>
-          <RightPanel />
+        <Box m={2}>
+          <ContentPanel
+            iframeContent={iframeContent}
+            setIframeContent={setIframeContent}
+          />
         </Box>
         <Box h={"50vh"} w={"100vw"} position="relative">
-          {currentScene ? (
+          {iframeContent ? (
+            <ContentBox h={"full"} m={2}>
+              <CustomIframe
+                src={iframeContent}
+                onClose={() => setIframeContent("")}
+              />
+            </ContentBox>
+          ) : currentScene ? (
             <Stage isMobile={true} />
           ) : (
             <MyGlobe
               width={window.innerWidth}
-              height={window.innerHeight - 1}
+              height={window.innerHeight / 2}
               bgColor={false}
               hoveredEpisode={hoveredEpisode}
               setHoveredEpisode={setHoveredEpisode}
@@ -33,9 +47,10 @@ const HomePage = () => {
           )}
         </Box>
         <Box mb={4} mx={2}>
-          <LeftPanel
+          <NavigationPanel
             hoveredEpisode={hoveredEpisode}
             setHoveredEpisode={setHoveredEpisode}
+            setIframeContent={setIframeContent}
           />
         </Box>
       </Flex>
@@ -65,14 +80,18 @@ const HomePage = () => {
         )}
       </Box>
       <Box zIndex={1}>
-        <LeftPanel
+        <NavigationPanel
           hoveredEpisode={hoveredEpisode}
           setHoveredEpisode={setHoveredEpisode}
+          setIframeContent={setIframeContent}
         />
       </Box>
       <Spacer />
       <Box zIndex={1}>
-        <RightPanel />
+        <ContentPanel
+          iframeContent={iframeContent}
+          setIframeContent={setIframeContent}
+        />
       </Box>
     </Flex>
   );
