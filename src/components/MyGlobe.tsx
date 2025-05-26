@@ -129,6 +129,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
 
           wrapper.style.pointerEvents = "auto";
           wrapper.style.cursor = "pointer";
+          wrapper.style.touchAction = "none";
 
           wrapper.innerHTML = `
             <div style="display:flex;flex-direction:column;align-items:center">
