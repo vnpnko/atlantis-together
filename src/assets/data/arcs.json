@@ -1,21 +1,21 @@
 [
   {
-    "startLat": 47.2954,
-    "startLng": 19.0207,
+    "startLat": 47.4979120,
+    "startLng": 19.0402350,
     "endLat": 21.2339,
     "endLng": -11.0653,
     "travelMode": "plane"
   },
   {
-    "startLat": 47.2954,
-    "startLng": 19.0207,
+    "startLat": 47.4979120,
+    "startLng": 19.0402350,
     "endLat": 37.5903,
     "endLng": 23.4341,
     "travelMode": "car"
   },
   {
-    "startLat": 47.2954,
-    "startLng": 19.0207,
+    "startLat": 47.4979120,
+    "startLng": 19.0402350,
     "endLat": 48.5124,
     "endLng": 2.2180,
     "travelMode": "plane"
