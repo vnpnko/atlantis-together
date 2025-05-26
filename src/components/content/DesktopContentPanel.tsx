@@ -30,7 +30,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
       {iframeContent ? (
         <DesktopIframe
           iframeContent={iframeContent}
-          setIframeContent={() => setIframeContent("")}
+          setIframeContent={setIframeContent}
         />
       ) : (
         <Flex right={0} direction="column" gap={2} h={"60%"}>
