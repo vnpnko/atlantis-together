@@ -39,19 +39,14 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
     }
 
     globe.controls().minDistance = 101;
-    globe.controls().maxDistance = 300;
+    globe.controls().maxDistance = 299;
 
-    const CLOUDS_ALT = 0.01;
     const CLOUDS_ROTATION_SPEED = -0.006;
     let animationFrameId = 0;
 
     new THREE.TextureLoader().load("/clouds.png", (cloudsTexture) => {
       const clouds = new THREE.Mesh(
-        new THREE.SphereGeometry(
-          globe.getGlobeRadius() * (1 + CLOUDS_ALT),
-          50,
-          50,
-        ),
+        new THREE.SphereGeometry(globe.getGlobeRadius() * 1.01),
         new THREE.MeshPhongMaterial({
           map: cloudsTexture,
           transparent: true,
@@ -103,6 +98,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
   return (
     <div ref={containerRef}>
       <Globe
+        showAtmosphere={false}
         ref={globeRef}
         globeImageUrl="/earth-surface.png"
         backgroundImageUrl={bgColor ? undefined : "/night-sky.png"}
