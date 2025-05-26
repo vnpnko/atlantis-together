@@ -3,17 +3,17 @@ import { BoxProps, Image } from "@chakra-ui/react";
 
 interface CustomImageProps extends BoxProps {
   isOpen?: boolean;
-  src: string;
+  iframeContent: string;
 }
 
-const CustomImage: React.FC<CustomImageProps> = ({
+const MobileImage: React.FC<CustomImageProps> = ({
   isOpen,
-  src,
+  iframeContent,
   ...boxProps
 }) => {
   return (
     <Image
-      src={src}
+      src={iframeContent}
       alt="Custom Image"
       w="full"
       h="full"
@@ -24,4 +24,4 @@ const CustomImage: React.FC<CustomImageProps> = ({
   );
 };
 
-export default CustomImage;
+export default MobileImage;

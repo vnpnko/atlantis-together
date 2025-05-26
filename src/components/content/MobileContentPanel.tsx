@@ -4,7 +4,7 @@ import Video from "./Video.tsx";
 import ContentBox from "../ui/ContentBox.tsx";
 import iframeKialo from "../../assets/images/iframe_kialo.png";
 import iframeBetterWorldTogether from "../../assets/images/iframe_betterworldtogether.png";
-import CustomImage from "../iframe/CustomImage.tsx";
+import MobileImage from "../image/MobileImage.tsx";
 
 interface ContentPanelProps {
   iframeContent: string;
@@ -22,8 +22,8 @@ const MobileContentPanel: React.FC<ContentPanelProps> = ({
       </ContentBox>
       <Flex h={"100px"} direction={"row"} gap={2}>
         <ContentBox w={"50%"}>
-          <CustomImage
-            src={iframeBetterWorldTogether}
+          <MobileImage
+            iframeContent={iframeBetterWorldTogether}
             isOpen={iframeContent.includes("betterworldtogether")}
             onClick={() => {
               setIframeContent(
@@ -34,8 +34,8 @@ const MobileContentPanel: React.FC<ContentPanelProps> = ({
         </ContentBox>
 
         <ContentBox w={"50%"}>
-          <CustomImage
-            src={iframeKialo}
+          <MobileImage
+            iframeContent={iframeKialo}
             isOpen={iframeContent.includes("kialo")}
             onClick={() => {
               setIframeContent(
