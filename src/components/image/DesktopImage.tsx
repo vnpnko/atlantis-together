@@ -5,7 +5,7 @@ interface CustomImageProps extends BoxProps {
   iframeContent: string;
 }
 
-const CustomImage: React.FC<CustomImageProps> = ({
+const DesktopImage: React.FC<CustomImageProps> = ({
   iframeContent,
   ...boxProps
 }) => {
@@ -36,4 +36,4 @@ const CustomImage: React.FC<CustomImageProps> = ({
   );
 };
 
-export default CustomImage;
+export default DesktopImage;

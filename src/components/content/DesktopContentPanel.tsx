@@ -5,7 +5,7 @@ import ContentBox from "../ui/ContentBox.tsx";
 import iframeKialo from "../../assets/images/iframe_kialo.png";
 import iframeBetterWorldTogether from "../../assets/images/iframe_betterworldtogether.png";
 import DesktopIframe from "../iframe/DesktopIframe.tsx";
-import CustomImage from "../iframe/CustomImage.tsx";
+import DesktopImage from "../image/DesktopImage.tsx";
 
 interface ContentPanelProps {
   iframeContent: string;
@@ -35,7 +35,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
       ) : (
         <Flex right={0} direction="column" gap={2} h={"60%"}>
           <ContentBox h={"50%"}>
-            <CustomImage
+            <DesktopImage
               iframeContent={iframeBetterWorldTogether}
               onClick={() =>
                 setIframeContent(
@@ -46,7 +46,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
           </ContentBox>
 
           <ContentBox h={"50%"}>
-            <CustomImage
+            <DesktopImage
               iframeContent={iframeKialo}
               onClick={() =>
                 setIframeContent(
