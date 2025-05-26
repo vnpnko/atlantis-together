@@ -36,12 +36,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
         <Flex right={0} direction="column" gap={2} h={"60%"}>
           <ContentBox h={"50%"}>
             <CustomImage
-              src={iframeBetterWorldTogether}
-              onMouseEnter={() =>
-                setIframeContent(
-                  "https://betterworldtogether.wixsite.com/mysite/copy-of-mauritania",
-                )
-              }
+              iframeContent={iframeBetterWorldTogether}
               onClick={() =>
                 setIframeContent(
                   "https://betterworldtogether.wixsite.com/mysite/copy-of-mauritania",
@@ -52,12 +47,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
 
           <ContentBox h={"50%"}>
             <CustomImage
-              src={iframeKialo}
-              onMouseEnter={() =>
-                setIframeContent(
-                  "https://www.kialo.com/atlantis-was-an-existing-place-and-can-be-found-41721",
-                )
-              }
+              iframeContent={iframeKialo}
               onClick={() =>
                 setIframeContent(
                   "https://www.kialo.com/atlantis-was-an-existing-place-and-can-be-found-41721",

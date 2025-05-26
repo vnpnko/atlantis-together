@@ -1,26 +1,38 @@
 import React from "react";
-import { BoxProps, Image } from "@chakra-ui/react";
+import { Box, BoxProps, Image, Text } from "@chakra-ui/react";
 
 interface CustomImageProps extends BoxProps {
-  isOpen?: boolean;
-  src: string;
+  iframeContent: string;
 }
 
 const CustomImage: React.FC<CustomImageProps> = ({
-  isOpen,
-  src,
+  iframeContent,
   ...boxProps
 }) => {
   return (
-    <Image
-      src={src}
-      alt="Custom Image"
-      w="full"
-      h="full"
-      objectFit="cover"
-      opacity={isOpen ? 1 : 0.4}
-      {...boxProps}
-    />
+    <Box position="relative" w="full" h="full" {...boxProps}>
+      <Image
+        src={iframeContent}
+        alt="Custom Image"
+        w="full"
+        h="full"
+        objectFit="cover"
+        opacity={0.4}
+      />
+      <Box
+        position="absolute"
+        inset={0}
+        opacity={0}
+        _hover={{ opacity: 1 }}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Text color="white" fontWeight="bold" textAlign="center">
+          Click to interact
+        </Text>
+      </Box>
+    </Box>
   );
 };
 
