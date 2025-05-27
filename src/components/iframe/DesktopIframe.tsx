@@ -46,8 +46,10 @@ const DesktopIframe: React.FC<CustomIframeProps> = ({
           }
           overflow={"hidden"}
           width="100%"
-          height="100%"
+          height="125%"
+          position={"relative"}
           as="iframe"
+          overscrollY={"none"}
           sandbox="allow-scripts allow-same-origin"
           src={iframeContent}
           color={"black"}
