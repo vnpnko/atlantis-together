@@ -65,14 +65,9 @@ const MobileNavPanel: React.FC<MobileNavPanelProps> = ({
       zIndex={20}
       overflowY="hidden"
       style={{ touchAction: "none" }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={(e) => e.preventDefault()}
     >
-      <Box
-        position={"absolute"}
-        w="full"
-        h="100px"
-        cursor="grab"
-        onPointerDown={handlePointerDown}
-      />
       <ListHeader resetIframe={() => setIframeContent("")} />
 
       <EpisodeList
