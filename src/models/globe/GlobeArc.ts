@@ -1,5 +1,5 @@
 export interface GlobeArc {
-  startLocation: string;
-  endLocation: string;
+  from: string;
+  to: string;
   travelMode: string;
 }

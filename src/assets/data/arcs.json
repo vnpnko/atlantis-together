@@ -1,32 +1,32 @@
 [
   {
-    "startLocation": "Budapest",
-    "endLocation": "Mauritania",
+    "from": "Budapest",
+    "to": "Mauritania",
     "travelMode": "plane"
   },
   {
-    "startLocation": "Budapest",
-    "endLocation": "Athens",
+    "from": "Budapest",
+    "to": "Athens",
     "travelMode": "car"
   },
   {
-    "startLocation": "Athens",
-    "endLocation": "Mauritania",
+    "from": "Athens",
+    "to": "Mauritania",
     "travelMode": "plane"
   },
   {
-    "startLocation": "Athens",
-    "endLocation": "Mycene",
+    "from": "Athens",
+    "to": "Mycene",
     "travelMode": "car"
   },
   {
-    "startLocation": "Athens",
-    "endLocation": "Lefkada",
+    "from": "Athens",
+    "to": "Lefkada",
     "travelMode": "car"
   },
   {
-    "startLocation": "Mycene",
-    "endLocation": "Lefkada",
+    "from": "Mycene",
+    "to": "Lefkada",
     "travelMode": "car"
   }
 ]
