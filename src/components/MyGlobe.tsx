@@ -89,10 +89,10 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
 
     arcs.forEach((arc) => {
       const positions = sampleGreatCircle(
-        arc.startLat,
-        arc.startLng - 90,
-        arc.endLat,
-        arc.endLng - 90,
+        locationsData.find((loc) => loc.label === arc.startLocation)!.lat,
+        locationsData.find((loc) => loc.label === arc.startLocation)!.lng - 90,
+        locationsData.find((loc) => loc.label === arc.endLocation)!.lat,
+        locationsData.find((loc) => loc.label === arc.endLocation)!.lng - 90,
       );
 
       const geometry = new LineGeometry();

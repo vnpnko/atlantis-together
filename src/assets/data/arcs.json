@@ -1,44 +1,32 @@
 [
   {
-    "startLat": 47.4979120,
-    "startLng": 19.0402350,
-    "endLat": 21.2339,
-    "endLng": -11.0653,
+    "startLocation": "Budapest",
+    "endLocation": "Mauritania",
     "travelMode": "plane"
   },
   {
-    "startLat": 47.4979120,
-    "startLng": 19.0402350,
-    "endLat": 37.5903,
-    "endLng": 23.4341,
+    "startLocation": "Budapest",
+    "endLocation": "Athens",
     "travelMode": "car"
   },
   {
-    "startLat": 47.4979120,
-    "startLng": 19.0402350,
-    "endLat": 48.5124,
-    "endLng": 2.2180,
+    "startLocation": "Athens",
+    "endLocation": "Mauritania",
     "travelMode": "plane"
   },
   {
-    "startLat": 48.5124,
-    "startLng": 2.2180,
-    "endLat": 9.3033,
-    "endLng": -13.4244,
-    "travelMode": "plane"
+    "startLocation": "Athens",
+    "endLocation": "Mycene",
+    "travelMode": "car"
   },
   {
-    "startLat": 9.3033,
-    "startLng": -13.4244,
-    "endLat": 18.0507,
-    "endLng": -15.5821,
-    "travelMode": "plane"
+    "startLocation": "Athens",
+    "endLocation": "Lefkada",
+    "travelMode": "car"
   },
   {
-    "startLat": 18.0507,
-    "startLng": -15.5821,
-    "endLat": 20.3810,
-    "endLng": -12.4327,
+    "startLocation": "Mycene",
+    "endLocation": "Lefkada",
     "travelMode": "car"
   }
 ]
