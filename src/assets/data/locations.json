@@ -1,45 +1,45 @@
 [
   {
+    "label": "Budapest",
+    "episode": 1,
     "lat": 47.4979120,
     "lng": 19.0402350,
-    "episode": 1,
-    "label": "Budapest",
     "url": "http://localhost:5173/?scene=Budapest",
     "source":
     "https://lumalabs.ai/capture/71dd63ee-ab2b-473b-a57b-b51bc8020b24"
   },
   {
+    "label": "Lefkada",
+    "episode": 2,
     "lat": 38.43,
     "lng": 20.39,
-    "episode": 2,
-    "label": "Lefkada",
     "url": "http://localhost:5173/?scene=Lefkada",
     "source":
     "https://lumalabs.ai/capture/b7a45371-3e4c-4e3b-87aa-b038d387ae2c"
   },
   {
+    "label": "Mycene",
+    "episode": 3,
     "lat": 37.4349,
     "lng": 22.4527,
-    "episode": 3,
-    "label": "Mycene",
     "url": "http://localhost:5173/?scene=Mycene",
     "source":
     "https://lumalabs.ai/capture/b7a45371-3e4c-4e3b-87aa-b038d387ae2c"
   },
   {
+    "label": "Athens",
+    "episode": 4,
     "lat": 37.5903,
     "lng": 23.4341,
-    "episode": 4,
-    "label": "Athens",
     "url": "http://localhost:5173/?scene=Athens",
     "source":
     "https://lumalabs.ai/capture/b7a45371-3e4c-4e3b-87aa-b038d387ae2c"
   },
   {
+    "label": "Mauritania",
+    "episode": 5,
     "lat": 21.2339,
     "lng": -11.0653,
-    "episode": 5,
-    "label": "Mauritania",
     "url": "http://localhost:5173/?scene=Mauritania",
     "source":
     "https://lumalabs.ai/capture/03ee0b55-1832-4eed-ab2a-366159ba926e?mode=sparkles"

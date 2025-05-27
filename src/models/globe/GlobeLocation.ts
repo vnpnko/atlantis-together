@@ -1,7 +1,8 @@
 export interface GlobeLocation {
-    lat: number;
-    lng: number;
-    label: string;
-    url: string;
-    source: string;
+  label: string;
+  episode: number;
+  lat: number;
+  lng: number;
+  url: string;
+  source: string;
 }
