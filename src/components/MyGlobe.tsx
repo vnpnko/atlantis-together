@@ -191,9 +191,26 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
             hoveredEpisode === loc.label || currentScene === loc.label;
 
           const wrapper = document.createElement("div");
+          // if (window.matchMedia("(hover: none)").matches) {
+          //   wrapper.style.pointerEvents = "none";
+          // }
+
           wrapper.style.pointerEvents = "auto";
           wrapper.style.cursor = "pointer";
           wrapper.style.touchAction = "none";
+
+          wrapper.addEventListener(
+            "pointerdown",
+            (e) => {
+              if (e.pointerType === "touch" && !e.isPrimary) {
+                wrapper.style.pointerEvents = "none";
+                const canvas = globeRef.current!.renderer().domElement;
+                canvas.dispatchEvent(e);
+              }
+            },
+            { passive: false, capture: true },
+          );
+
           wrapper.innerHTML = `
             <div style="display:flex;flex-direction:column;align-items:center">
               <img src="/geotag.png" alt="Geotag" style="height:40px" />
