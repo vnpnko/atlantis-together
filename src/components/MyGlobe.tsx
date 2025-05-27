@@ -191,25 +191,10 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
             hoveredEpisode === loc.label || currentScene === loc.label;
 
           const wrapper = document.createElement("div");
-          // if (window.matchMedia("(hover: none)").matches) {
-          //   wrapper.style.pointerEvents = "none";
-          // }
 
           wrapper.style.pointerEvents = "auto";
           wrapper.style.cursor = "pointer";
           wrapper.style.touchAction = "none";
-
-          wrapper.addEventListener(
-            "pointerdown",
-            (e) => {
-              if (e.pointerType === "touch" && !e.isPrimary) {
-                wrapper.style.pointerEvents = "none";
-                const canvas = globeRef.current!.renderer().domElement;
-                canvas.dispatchEvent(e);
-              }
-            },
-            { passive: false, capture: true },
-          );
 
           wrapper.innerHTML = `
             <div style="display:flex;flex-direction:column;align-items:center">
@@ -240,6 +225,21 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
           wrapper.addEventListener("wheel", labelWheelHandler, {
             passive: false,
           });
+
+          const canvas = globeRef.current!.renderer().domElement;
+          ["pointerdown", "pointermove", "pointerup", "pointercancel"].forEach(
+            (type) =>
+              wrapper.addEventListener(
+                type,
+                (e) => {
+                  if ((e as PointerEvent).pointerType === "touch") {
+                    const cloned = new PointerEvent(e.type, e);
+                    canvas.dispatchEvent(cloned);
+                  }
+                },
+                { passive: false, capture: true },
+              ),
+          );
 
           return wrapper;
         }}
