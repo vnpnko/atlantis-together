@@ -126,7 +126,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
         new THREE.MeshPhongMaterial({
           map: tex,
           transparent: true,
-          opacity: 0.4,
+          opacity: 0.3,
         }),
       );
       globe.scene().add(clouds);
