@@ -54,8 +54,8 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
     endLat: number,
     endLng: number,
     steps = 64,
-    radius = 100,
-    altitude = 0.03,
+    radius = 99.9715,
+    altitude = 0.0297,
   ): number[] {
     const v0 = llToVec3(startLat, startLng);
     const v1 = llToVec3(endLat, endLng);
@@ -113,7 +113,7 @@ const MyGlobe: React.FC<MyGlobeProps> = ({
     const globe = globeRef.current;
     if (!globe) return;
 
-    globe.controls().minDistance = 101;
+    globe.controls().minDistance = 100.06;
     globe.controls().maxDistance = 299;
 
     const CLOUDS_ROT_SPEED = -0.006;
